@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/register.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <title>Blog App || Register</title>
+</head>
+
+<body>
+    <div class="main">
+        <div id="container">
+            <a href="/profile"> <i class="ri-arrow-left-line"></i>No need to change</a>
+            <form action="/updateinfo" method="POST">
+                <label for="name">Name</label>
+                <input type="text" name="name" placeholder="Name" value="<%=details.name%>">
+                <label for="email">Email</label>
+                <input type="email" name="email" placeholder="Email" value="<%=details.email%>">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Username" value="<%=details.username%>">
+                <input type="submit" value="Update Details">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

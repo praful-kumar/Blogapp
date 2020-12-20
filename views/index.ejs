@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog App || Homepage</title>
+  <link rel="stylesheet" href="../stylesheets/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="home">
+    <div id="nav">
+      <a href="/">Bloggy</a>
+      <div id="links">
+        <a href="/allblogs">All Blogs by Users</a>
+      </div>
+      <% if(loggedIn === true){%>
+      <div id="btns">
+        <a href="/profile">Profile</a>
+        <a href="/logout" style="background-color: rgb(236, 77, 77);">Logout</a>
+      </div>
+      <%} else{ %>
+      <div id="btns">
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
+      </div>
+      <% }%>
+
+
+
+    </div>
+    <div id="content">
+      <h1>Learning is a weightless treasure you can <br> carry <span id="tdy">Easily..</span> </h1>
+      <a href="#"> Explore More<i class="ri-arrow-right-line"></i></a>
+      <div id="menu">
+        <div id="extra">
+          <div class="catg active">
+            <i class="ri-heart-line"></i>
+            <h4>Like Post</h4>
+          </div>
+          <div class="catg">
+            <i class="ri-quill-pen-fill"></i>
+            <h4>Recent-Posts</h4>
+          </div>
+          <div class="catg">
+            <i class="ri-user-heart-line"></i>
+            <h4>New User</h4>
+          </div>
+        </div>
+        <div class="main">
+          <% if(results !== undefined) { %>
+            <% results.forEach(function(result){ %>
+              <div class="blogspace">
+                <div class="pic">
+                  <img src=<%=result.author.profileImg%> alt="">
+                </div>
+                <div class="feeds">
+                  <h3><%=result.post%></h3>
+                  <h6><%=result.author.name%></h6>
+                  <p> <%=result.time%></p>
+                  <div class="icons">
+                    <i class="ri-user-heart-line"></i>
+                    <i class="ri-user-add-line"></i>
+                  </div>
+                </div>
+              </div>
+
+            <% })%>
+            <% } else{ %>
+               <h3>No post Avilable</h3> 
+            <% }%>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogApp || Profile</title>
+    <link rel="stylesheet" href="../stylesheets/profile.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <% if(messages.status){ %>
+            <h3><%= messages.status %></h3>
+       <% }%>
+        
+        
+        <a href="/"> <i class="ri-arrow-left-line"></i>Go to Homepage</a>
+        <div class="mainsection">
+            <div class="left">
+                <div id="profileimg" class="image">
+                    <form enctype="multipart/form-data" id="imageform" action="/upload" method="POST">
+                    <input type="file" name="image">
+                    </form>
+                    <img src=<%=details.profileImg%> alt="">
+                    <div class="overlayimg">
+                        <i class="ri-camera-line"></i>
+                    </div>
+                </div>
+                <div class="text">
+                    <h4><%=details.name %></h4>
+                    <p><%=details.email%></p>
+                    <a href="/update"><i class="ri-quill-pen-fill"></i>Edit Profile</a href="/updateinfo">
+                </div>
+            </div>
+            <div class="right">
+                <h1>All Posts</h1>
+                <div class="posts">
+                    <form action="/postreg" method="POST">
+                        <textarea name="post" id="postfield" placeholder="Write Your Posts Here"></textarea>
+                        <button type="submit"> POST IT</button>
+                    </form>
+                    <% if(details.posts.length < 1) {%>
+                    <h3>No Post Avilable </h3>
+                    <%} else{ %>
+                        <% details.posts.reverse().forEach(function(post){ %> 
+                            <div class="post">
+                                <div class="top">
+                                    <div class="smimg">
+                                        <img src=<%=details.profileImg%> alt="img">
+                                    </div>
+                                    <h4><%=details.name %></h4>
+                                </div>
+                                <p><%=post.post %></p>
+                                <div class="icons">
+                                    <i class="ri-clipboard-line"></i>
+                                </div>
+                            </div>
+        
+
+                            <% }) %>
+                    
+                    <% } %>
+                   
+
+        </div>
+    </div>
+    <script>
+        var profileimg =document.querySelector('#profileimg');
+        var imageform = document.querySelector('#imageform');
+        var inputfile = document.querySelector('#imageform input');
+
+        profileimg.addEventListener('click', function(){
+            inputfile.click();
+        })
+        inputfile.addEventListener('change', function(){
+            imageform.submit();
+        })
+
+    </script>
+</body>
+
+</html>

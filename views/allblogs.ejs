@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogApp || Profile</title>
+    <link rel="stylesheet" href="../stylesheets/allblogs.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <div class="container">
+
+
+        <a href="/"> <i class="ri-arrow-left-line"></i>Go to Homepage</a>
+        <div class="mainsection">
+            <div class="left">
+                <div id="profileimg" class="image">
+                    <form enctype="multipart/form-data" id="imageform" action="/upload" method="POST">
+                        <input type="file" name="image">
+                    </form>
+                    <img src="../images/Uploads/default.jpg">
+                    <div class="overlayimg">
+                        <i class="ri-camera-line"></i>
+                    </div>
+                </div>
+                <div class="text">
+                    <h4>All Random Posts</h4>
+                    <p>Here! you find posts of all users</p>
+                    <a href="/register">Register a new Account</a>
+
+                </div>
+            </div>
+            <div class="right">
+                <h1>All Posts</h1>
+                <% if(details !== undefined) { %>
+                <% details.forEach(function(detail){ %>
+                <div class="posts">
+                    <div class="post">
+                        <div class="top">
+                            <div class="smimg">
+                                <img src=<%=detail.author.profileImg%> alt="">
+                            </div>
+                            <h4><%=detail.author.name%></h4>
+                        </div>
+                        <p><%=detail.post%></p>
+                                <div class="icons">
+                                    <i class="ri-clipboard-line"></i>
+                                </div>
+                            </div>
+                </div>
+                <% })%>
+            <% } else{ %>
+               <h3>No post Avilable</h3> 
+            <% }%>
+    </div>
+    <script>
+        var profileimg = document.querySelector('#profileimg');
+        var imageform = document.querySelector('#imageform');
+        var inputfile = document.querySelector('#imageform input');
+
+        profileimg.addEventListener('click', function () {
+            inputfile.click();
+        })
+        inputfile.addEventListener('change', function () {
+            imageform.submit();
+        })
+
+        var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+    </script>
+</body>
+
+</html>
